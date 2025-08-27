@@ -9,7 +9,7 @@ export default function DefaultLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="relative flex h-screen bg-[#0F1014] text-[#D8D9D9]">
+    <div className="relative font-geist flex h-screen bg-[#0F1014] text-[#D8D9D9]">
       <Sidebar />
       <main>{children}</main>
     </div>
