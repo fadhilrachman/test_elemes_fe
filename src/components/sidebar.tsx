@@ -25,7 +25,7 @@ const Sidebar = () => {
   ];
 
   return (
-    <aside className="w-[120px]  h-screen flex items-center px-4">
+    <aside className="w-[120px] z-50 fixed  h-screen flex items-center px-4">
       <nav className="w-full group/sidebar  z-10 flex justify-center ">
         <ul className="relative z-10">
           {listSidebar.map((val, i) => (
