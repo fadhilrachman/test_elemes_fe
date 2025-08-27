@@ -1,17 +1,20 @@
-import { Link } from "@heroui/link";
-
-import { Navbar } from "@/components/navbar";
-import Sidebar from "@/components/sidebar";
+import BottomBar from "@/components/shared/bottom-bar";
+import Sidebar from "@/components/shared/sidebar";
 
 export default function DefaultLayout({
   children,
+  className,
 }: {
   children: React.ReactNode;
+  className?: string;
 }) {
   return (
-    <div className="relative font-inter flex min-h-screen bg-[#0F1014] text-[#D8D9D9]">
+    <div
+      className={`relative overflow-x-hidden font-inter flex min-h-screen  text-[#D8D9D9] `}
+    >
       <Sidebar />
-      <main>{children}</main>
+      <BottomBar />
+      <main className={`w-full ${className}`}>{children}</main>
     </div>
   );
 }

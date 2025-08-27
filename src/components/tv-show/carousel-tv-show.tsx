@@ -5,7 +5,7 @@ import { useState } from "react";
 import CarouselSkeleton from "../shared/carousel-skeleton";
 import moment from "moment";
 
-const CarouselMovie = () => {
+const CarouselTvShow = () => {
   const { data, isFetching } = useGetTrandingMovies({ page: 6 });
   const [index, setIndex] = useState(0);
   const dataChoosed = data?.results?.[index];
@@ -74,4 +74,4 @@ const CarouselMovie = () => {
   );
 };
 
-export default CarouselMovie;
+export default CarouselTvShow;

@@ -2,13 +2,14 @@ import { useGetMovies } from "@/hooks/use-movie";
 import { Tabs, Tab } from "@heroui/tabs";
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import MovieCard from "./movie-card";
+import TvShowCard from "./tv-show-card";
 import { Button } from "@heroui/button";
+import { useGetTvShow } from "@/hooks/use-tv-show";
 
-const ListMovie = () => {
+const ListTvShow = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const category = searchParams.get("category");
-  const { data, refetch } = useGetMovies({
+  const { data, refetch } = useGetTvShow({
     page: 1,
     category: category || "top_rated",
   });
@@ -21,7 +22,7 @@ const ListMovie = () => {
       <Tabs
         color="secondary"
         className=" flex flex-wrap relative"
-        selectedKey={category || "top_rated"}
+        selectedKey={category || "airing_today"}
         onSelectionChange={(val) => {
           setSearchParams({ category: val.toString() });
         }}
@@ -29,14 +30,14 @@ const ListMovie = () => {
         aria-label="Tabs variants"
         variant={"light"}
       >
+        <Tab key="airing_today" title="Airing Today" />
+        <Tab key="on_the_air" title="On The Air" />
+        <Tab key="popular" title="Popular" />
         <Tab key="top_rated" title="Top Rated" />
-        <Tab key="upcoming" title="Upcoming" />
-        <Tab key="now_playing" title="Now Playing  " />
-        <Tab key="pupolar" title="Popular  " />
       </Tabs>
       <div className=" grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
         {data?.results?.map((val, key) => {
-          return <MovieCard {...val} key={key} />;
+          return <TvShowCard {...val} key={key} />;
         })}
       </div>
       <div className="flex justify-center">
@@ -46,4 +47,4 @@ const ListMovie = () => {
   );
 };
 
-export default ListMovie;
+export default ListTvShow;

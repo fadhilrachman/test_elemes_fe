@@ -1,17 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetcher } from "@/lib/fetcher";
 import { BaseResponseType } from "@/types";
-import { MovieType } from "@/types/movie";
+import { TvShowType } from "@/types/tv-show";
 
-export const useGetAiringTodayTVShow = (params: {
-  page: number;
-  per_page: number;
-  search?: string;
-}) => {
-  const query = useQuery<BaseResponseType<MovieType>>({
-    queryKey: ["LIST_AIRING_TODAY_TV_SHOW"],
+export const useGetTvShow = (params: { page?: number; category: string }) => {
+  const query = useQuery<BaseResponseType<TvShowType>>({
+    queryKey: ["LIST_TV_SHOW"],
     queryFn: async () => {
-      const result = await fetcher.get("/tv/airing_today", { params });
+      const result = await fetcher.get(`/tv/${params.category}`, {
+        params: {
+          page: params.page,
+        },
+      });
 
       return result.data;
     },
@@ -20,48 +20,15 @@ export const useGetAiringTodayTVShow = (params: {
   return query;
 };
 
-export const useGetUpcomingMovie = (params: {
-  page: number;
-  per_page: number;
-  search?: string;
-}) => {
-  const query = useQuery<BaseResponseType<MovieType>>({
-    queryKey: ["LIST_UPCOMING_TV_SHOW"],
+export const useGetTrandingMovies = (params: { page?: number }) => {
+  const query = useQuery<BaseResponseType<TvShowType>>({
+    queryKey: ["LIST_TRANDING_TV_SHOW"],
     queryFn: async () => {
-      const result = await fetcher.get("/tv/airing_today?", { params });
-
-      return result.data;
-    },
-  });
-
-  return query;
-};
-export const useGetNowPlayingMovie = (params: {
-  page: number;
-  per_page: number;
-  search?: string;
-}) => {
-  const query = useQuery<BaseResponseType<MovieType>>({
-    queryKey: ["LIST_NOW_PLAYING_TV_SHOW"],
-    queryFn: async () => {
-      const result = await fetcher.get("/tv/airing_today?", { params });
-
-      return result.data;
-    },
-  });
-
-  return query;
-};
-
-export const useGetPopularMovie = (params: {
-  page: number;
-  per_page: number;
-  search?: string;
-}) => {
-  const query = useQuery<BaseResponseType<MovieType>>({
-    queryKey: ["LIST_POPULAR_TV_SHOW"],
-    queryFn: async () => {
-      const result = await fetcher.get("/tv/airing_today?", { params });
+      const result = await fetcher.get(`/trending/tv/week`, {
+        params: {
+          page: params.page,
+        },
+      });
 
       return result.data;
     },

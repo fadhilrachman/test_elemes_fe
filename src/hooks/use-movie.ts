@@ -19,3 +19,20 @@ export const useGetMovies = (params: { page?: number; category: string }) => {
 
   return query;
 };
+
+export const useGetTrandingMovies = (params: { page?: number }) => {
+  const query = useQuery<BaseResponseType<MovieType>>({
+    queryKey: ["LIST_TRANDING_MOVIES"],
+    queryFn: async () => {
+      const result = await fetcher.get(`/trending/movie/week`, {
+        params: {
+          page: params.page,
+        },
+      });
+
+      return result.data;
+    },
+  });
+
+  return query;
+};
