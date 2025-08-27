@@ -50,7 +50,7 @@ const Sidebar = () => {
         <div
           className="
         absolute top-0 left-0 h-screen w-[400px]
-        bg-gradient-to-r from-black/90 to-black/10
+        bg-gradient-to-r from-black/100 to-transparent
         opacity-0 group-hover/sidebar:opacity-100
         transition-opacity duration-300
         pointer-events-none

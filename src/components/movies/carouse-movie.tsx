@@ -1,10 +1,9 @@
 import { Button } from "@heroui/button";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import React from "react";
 
 const CarouselMovie = () => {
   return (
-    <section className="relative w-screen  h-[560px] ">
+    <section className="relative w-full  h-[560px] ">
       <div
         className="fixed  inset-0 h-screen w-screen bg-cover bg-no-repeat "
         style={{
@@ -19,7 +18,7 @@ const CarouselMovie = () => {
         <div className="max-w-[600px] space-y-6 ">
           <h1 className="text-4xl font-bold text-white">Planet Of Apes</h1>
 
-          <div className="flex flex-wrap items-center gap-2 text-white/80 font-medium">
+          <div className="flex flex-wrap items-center gap-2 text-white font-medium">
             <span>2025</span>
             <span>•</span>
             <span>13+</span>
@@ -29,7 +28,7 @@ const CarouselMovie = () => {
             <span>English</span>
           </div>
 
-          <p className="text-neutral-300">
+          <p className="text-white/80 ">
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
             Exercitationem id, culpa possimus cumque illum unde minima vel
             asperiores facilis sit nisi quidem dolor nesciunt, labore odio fugit

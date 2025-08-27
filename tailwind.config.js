@@ -25,11 +25,21 @@ export default {
             primary: {
               DEFAULT: "#E50914",
             },
-            foreground: {
-              DEFAULT: "#0F1014",
+            secondary: {
+              DEFAULT: "#3F3F46",
             },
+            focus: "#E50914",
           },
         },
+        // background: {
+        //   extend: "light",
+        //   colors: {
+        //     primary: {
+        //       DEFAULT: "#3F3F46",
+        //     },
+        //     focus: "#E50914",
+        //   },
+        // },
       },
     }),
   ],
