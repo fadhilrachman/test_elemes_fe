@@ -1,10 +1,8 @@
-import { useGetMovies } from "@/hooks/use-movie";
 import { Tabs, Tab } from "@heroui/tabs";
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import TvShowCard from "./tv-show-card";
-import { Button } from "@heroui/button";
 import { useGetTvShow } from "@/hooks/use-tv-show";
+import Card from "../shared/card";
 
 const ListTvShow = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -36,12 +34,19 @@ const ListTvShow = () => {
       </Tabs>
       <div className=" grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
         {data?.results?.map((val, key) => {
-          return <TvShowCard {...val} key={key} />;
+          return (
+            <Card
+              adult={val?.adult}
+              title={val?.name}
+              bgImage={val?.backdrop_path}
+              originalLanguage={val?.original_language}
+              overview={val?.overview}
+              releaseDate={val?.first_air_date}
+              key={key}
+            />
+          );
         })}
       </div>
-      <div className="flex justify-center">
-        <Button color="secondary">Load More</Button>
-      </div>{" "}
     </div>
   );
 };

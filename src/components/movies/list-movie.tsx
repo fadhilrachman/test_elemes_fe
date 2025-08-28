@@ -2,9 +2,8 @@ import { useGetMovies } from "@/hooks/use-movie";
 import { Tabs, Tab } from "@heroui/tabs";
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import MovieCard from "./movie-card";
-import { Button } from "@heroui/button";
 import CardSkeleton from "../shared/card-skeleton";
+import Card from "../shared/card";
 
 const ListMovie = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -40,7 +39,17 @@ const ListMovie = () => {
               .fill(0)
               .map((_, key) => <CardSkeleton key={key} />)
           : data?.results?.map((val, key) => {
-              return <MovieCard {...val} key={key} />;
+              return (
+                <Card
+                  adult={val?.adult}
+                  title={val?.title}
+                  bgImage={val?.backdrop_path}
+                  originalLanguage={val?.original_language}
+                  overview={val?.overview}
+                  releaseDate={val?.release_date}
+                  key={key}
+                />
+              );
             })}
       </div>
     </div>

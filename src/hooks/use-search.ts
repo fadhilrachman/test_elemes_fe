@@ -12,7 +12,7 @@ export const useGetSearchMultiple = (params: {
       const result = await fetcher.get(`/search/multi`, {
         params: {
           page: params.page,
-          include_adult: true,
+          include_adult: false,
           query: params.query,
         },
       });

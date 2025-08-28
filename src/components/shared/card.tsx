@@ -1,14 +1,23 @@
-import { MovieType } from "@/types/movie";
 import { Button } from "@heroui/button";
 import moment from "moment";
 import Image from "../shared/Image";
+import { Icon } from "@iconify/react/dist/iconify.js";
+import { Tooltip } from "@heroui/tooltip";
 
-const MovieCard = (props: MovieType) => {
+interface PropsType {
+  bgImage: string;
+  title: string;
+  releaseDate: string;
+  overview: string;
+  originalLanguage: string;
+  adult: boolean;
+}
+const Card = (props: PropsType) => {
   const ytLink = import.meta.env.VITE_YT_LINK;
   return (
     <div className="relative z-10 max-h-[400px] hover:z-20 rounded-lg overflow-hidden bg-gray-900 group transition-all cursor-pointer hover:scale-120">
       <Image
-        src={props?.backdrop_path}
+        src={props?.bgImage}
         alt={props.title}
         className="w-full h-full object-cover object-to transition-transform duration-500 "
       />
@@ -18,21 +27,29 @@ const MovieCard = (props: MovieType) => {
           {props.title}
         </h3>
 
-        <Button
-          size="sm"
-          onPress={() => {
-            window.open(`${ytLink}${props.original_title}`, "_blank");
-          }}
-          variant="solid"
-        >
-          {" "}
-          Watch Now
-        </Button>
+        <div className="flex flex-col md:flex-row gap-2">
+          <Button
+            size="sm"
+            onPress={() => {
+              window.open(`${ytLink}${props.title}`, "_blank");
+            }}
+            className="w-full"
+            variant="solid"
+          >
+            {" "}
+            Watch Now
+          </Button>
+          <Tooltip content="Add to Watchlist">
+            <Button isIconOnly size="sm">
+              <Icon icon={"mdi:plus"} />
+            </Button>
+          </Tooltip>
+        </div>
 
         <p className="text-xs text-gray-300 mt-3">
-          {moment(props?.release_date).format("YYYY")} •{" "}
+          {moment(props?.releaseDate).format("YYYY")} •{" "}
           {props?.adult ? "Adult Content" : "All Ages"} •{" "}
-          {props.original_language}
+          {props.originalLanguage}
         </p>
         <p className="text-xs text-gray-400 mt-1 line-clamp-2 md:line-clamp-3">
           {props.overview}
@@ -42,4 +59,4 @@ const MovieCard = (props: MovieType) => {
   );
 };
 
-export default MovieCard;
+export default Card;
