@@ -36,7 +36,7 @@ const CarouselMovie = () => {
         ...parsed,
         {
           id: dataChoosed.id,
-          bgImage: dataChoosed.backdrop_path,
+          bgImage: dataChoosed.poster_path,
           title: dataChoosed.title,
           releaseDate: dataChoosed.release_date,
           overview: dataChoosed.overview,
@@ -61,10 +61,10 @@ const CarouselMovie = () => {
   return (
     <section
       className="relative w-full h-[560px]"
-      aria-label="Trending Movies Carousel"
+      aria-label="Trending TV Shows Carousel"
     >
       <div
-        className="absolute right-0 top-0 h-[760px] w-full bg-no-repeat"
+        className="absolute right-0 top-0 h-[760px] w-12/12 bg-no-repeat"
         style={{
           backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0)), url(https://image.tmdb.org/t/p/original/${dataChoosed?.poster_path})`,
           backgroundSize: "cover",
@@ -75,84 +75,75 @@ const CarouselMovie = () => {
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-black/60"></div>
 
       <div className="relative h-full gap-4 flex flex-col lg:flex-row items-start lg:items-end justify-end lg:justify-between pr-5 sm:pr-10 pb-8">
-        <figure className="max-w-[600px] space-y-6">
-          <figcaption>
-            <header>
-              <h2 className="text-4xl font-bold text-white">
-                {dataChoosed?.original_title}
-              </h2>
-            </header>
+        <header className="max-w-[600px] space-y-6">
+          <h1 className="text-4xl font-bold text-white">
+            {dataChoosed?.title}
+          </h1>
 
-            <div className="flex flex-wrap items-center gap-2 text-white font-medium">
-              <span>{moment(dataChoosed?.release_date).format("YYYY")}</span>
-              <span>•</span>
-              <span>{dataChoosed?.adult ? "Adult Content" : "All Ages"}</span>
-              <span>•</span>
-              <span>{dataChoosed?.original_language}</span>
-            </div>
+          <div className="flex flex-wrap items-center gap-2 text-white font-medium">
+            <span>{moment(dataChoosed?.release_date).format("YYYY")}</span>
+            <span>•</span>
+            <span>{dataChoosed?.adult ? "Adult Content" : "All Ages"}</span>
+            <span>•</span>
+            <span>{dataChoosed?.original_language}</span>
+          </div>
 
-            <p className="text-white/80 line-clamp-3">
-              {dataChoosed?.overview}
-            </p>
+          <p className="text-white/80 line-clamp-3">{dataChoosed?.overview}</p>
 
-            <div className="flex items-center gap-2 mt-2">
-              <Button
-                onPress={() =>
-                  window.open(`${ytLink}${dataChoosed.title}`, "_blank")
-                }
-                color="primary"
-                className="w-full sm:w-auto"
-                size="lg"
-                aria-label={`Watch ${dataChoosed?.original_title} now`}
-              >
-                Watch Now
-              </Button>
+          <div className="flex items-center gap-2">
+            <Button
+              onPress={() =>
+                window.open(`${ytLink}${dataChoosed.title}`, "_blank")
+              }
+              color="primary"
+              size="lg"
+              className="w-full sm:w-auto"
+            >
+              Watch Now
+            </Button>
+            <Button
+              variant="solid"
+              size="lg"
+              isIconOnly
+              onPress={handleAddToWatchlist}
+              aria-label={
+                isAdded
+                  ? `Remove ${dataChoosed?.title} from watchlist`
+                  : `Add ${dataChoosed?.title} to watchlist`
+              }
+            >
+              <Icon
+                icon={isAdded ? "iconamoon:check-fill" : "line-md:plus"}
+                className="text-lg"
+              />
+            </Button>
+          </div>
+        </header>
 
-              <Button
-                variant="solid"
-                size="lg"
-                isIconOnly
-                onPress={handleAddToWatchlist}
-                aria-label={
-                  isAdded
-                    ? `${dataChoosed?.original_title} is in your watchlist`
-                    : `Add ${dataChoosed?.original_title} to watchlist`
-                }
-              >
-                <Icon
-                  icon={isAdded ? "iconamoon:check-fill" : "line-md:plus"}
-                  className="text-lg"
-                />
-              </Button>
-            </div>
-          </figcaption>
-        </figure>
-
-        <section
+        <ul
           className="grid grid-cols-4 gap-6"
-          aria-label="Trending movie thumbnails"
+          role="list"
+          aria-label="TV Show Thumbnails"
         >
           {isFetching
             ? Array.from({ length: 4 }).map((_, key) => (
-                <CarouselSkeleton key={key} />
+                <li key={key}>
+                  <CarouselSkeleton />
+                </li>
               ))
             : data?.results?.slice(0, 4)?.map((val, key) => (
-                <button
-                  key={key}
-                  onClick={() => setIndex(key)}
-                  className={`${
-                    index === key ? "border border-white" : ""
-                  } w-[100px] h-[60px] rounded-md overflow-hidden cursor-pointer transition-all hover:scale-110`}
-                  aria-label={`Select ${val.title}`}
-                >
+                <li key={key}>
                   <img
+                    onClick={() => setIndex(key)}
                     src={`https://image.tmdb.org/t/p/w440_and_h660_face${val?.poster_path}`}
-                    alt={val.title}
-                    className="w-full h-full object-cover object-top"
+                    alt={val?.title}
+                    className={`${
+                      index === key ? "border border-white" : ""
+                    } w-[100px] h-[60px] object-top object-cover rounded-md cursor-pointer transition-all hover:scale-110`}
                   />
-                </button>
+                </li>
               ))}
-        </section>
+        </ul>
       </div>
     </section>
   );

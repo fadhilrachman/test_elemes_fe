@@ -36,7 +36,7 @@ const CarouselTvShow = () => {
         ...parsed,
         {
           id: dataChoosed.id,
-          bgImage: dataChoosed.backdrop_path,
+          bgImage: dataChoosed.poster_path,
           title: dataChoosed.name,
           releaseDate: dataChoosed.first_air_date,
           overview: dataChoosed.overview,

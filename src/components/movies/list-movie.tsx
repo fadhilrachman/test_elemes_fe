@@ -53,7 +53,7 @@ const ListMovie = () => {
                 type="movie"
                 adult={val?.adult}
                 title={val?.title}
-                bgImage={val?.backdrop_path}
+                bgImage={val?.poster_path}
                 originalLanguage={val?.original_language}
                 overview={val?.overview}
                 releaseDate={val?.release_date}

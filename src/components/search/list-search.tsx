@@ -72,7 +72,7 @@ const ListSearch = () => {
                         id={val.id}
                         adult={val?.adult}
                         title={val?.name}
-                        bgImage={val?.backdrop_path}
+                        bgImage={val?.poster_path}
                         originalLanguage={val?.original_language}
                         overview={val?.overview}
                         releaseDate={val?.first_air_date}
@@ -96,7 +96,7 @@ const ListSearch = () => {
               className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6"
               role="list"
             >
-              {isFetching && status === "success"
+              {isFetching
                 ? Array(6)
                     .fill(0)
                     .map((_, key) => (
@@ -111,7 +111,7 @@ const ListSearch = () => {
                         type="tv"
                         adult={val?.adult}
                         title={val?.name}
-                        bgImage={val?.backdrop_path}
+                        bgImage={val?.poster_path}
                         originalLanguage={val?.original_language}
                         overview={val?.overview}
                         releaseDate={val?.first_air_date}

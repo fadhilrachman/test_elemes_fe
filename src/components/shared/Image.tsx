@@ -8,13 +8,12 @@ type ImageProps = React.ImgHTMLAttributes<HTMLImageElement> & {
 const Image = ({ src, alt, className, rounded, ...rest }: ImageProps) => {
   const [isLoading, setLoading] = useState(true);
   const imgLink = import.meta.env.VITE_IMG_LINK;
-
   return (
     <div
       className={clsx("overflow-hidden", isLoading && "animate-pulse", rounded)}
     >
       <img
-        src={imgLink + src}
+        src={imgLink + (src || "/rOTXYy5ScOHdaC2YMQowVwQex5s.jpg")}
         alt={alt}
         className={clsx(
           "duration-700 ease-in-out",
