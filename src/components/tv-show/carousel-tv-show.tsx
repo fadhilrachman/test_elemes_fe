@@ -7,6 +7,8 @@ import CarouselSkeleton from "../shared/carousel-skeleton";
 import { addToast } from "@heroui/toast";
 
 const CarouselTvShow = () => {
+  const ytLink = import.meta.env.VITE_YT_LINK;
+
   const { data, isFetching } = useGetTrandingTvShow({ page: 6 });
   const [index, setIndex] = useState(0);
   const dataChoosed = data?.results?.[index];
@@ -89,7 +91,14 @@ const CarouselTvShow = () => {
           <p className="text-white/80 line-clamp-3">{dataChoosed?.overview}</p>
 
           <div className="flex items-center gap-2">
-            <Button color="primary" size="lg" className="w-full sm:w-auto">
+            <Button
+              onPress={() =>
+                window.open(`${ytLink}${dataChoosed.name}`, "_blank")
+              }
+              color="primary"
+              size="lg"
+              className="w-full sm:w-auto"
+            >
               Watch Now
             </Button>
             <Button

@@ -7,6 +7,8 @@ import moment from "moment";
 import { addToast } from "@heroui/toast";
 
 const CarouselMovie = () => {
+  const ytLink = import.meta.env.VITE_YT_LINK;
+
   const { data, isFetching } = useGetTrandingMovies({ page: 6 });
   const [index, setIndex] = useState(0);
   const dataChoosed = data?.results?.[index];
@@ -95,6 +97,9 @@ const CarouselMovie = () => {
 
             <div className="flex items-center gap-2 mt-2">
               <Button
+                onPress={() =>
+                  window.open(`${ytLink}${dataChoosed.title}`, "_blank")
+                }
                 color="primary"
                 className="w-full sm:w-auto"
                 size="lg"
