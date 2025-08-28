@@ -20,7 +20,7 @@ export const useGetTvShow = (params: { page?: number; category: string }) => {
   return query;
 };
 
-export const useGetTrandingMovies = (params: { page?: number }) => {
+export const useGetTrandingTvShow = (params: { page?: number }) => {
   const query = useQuery<BaseResponseType<TvShowType>>({
     queryKey: ["LIST_TRANDING_TV_SHOW"],
     queryFn: async () => {

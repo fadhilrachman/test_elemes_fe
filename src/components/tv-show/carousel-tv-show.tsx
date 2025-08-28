@@ -1,12 +1,12 @@
-import { useGetTrandingMovies } from "@/hooks/use-movie";
 import { Button } from "@heroui/button";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useState } from "react";
 import CarouselSkeleton from "../shared/carousel-skeleton";
 import moment from "moment";
+import { useGetTrandingTvShow } from "@/hooks/use-tv-show";
 
 const CarouselTvShow = () => {
-  const { data, isFetching } = useGetTrandingMovies({ page: 6 });
+  const { data, isFetching } = useGetTrandingTvShow({ page: 6 });
   const [index, setIndex] = useState(0);
   const dataChoosed = data?.results?.[index];
   return (
@@ -25,11 +25,11 @@ const CarouselTvShow = () => {
       <div className="relative h-full gap-4 flex flex-col md:flex-row items-end justify-end md:justify-between pr-5 sm:pr-10 pb-8">
         <div className="max-w-[600px] space-y-6">
           <h1 className="text-4xl font-bold text-white">
-            {dataChoosed?.original_title}
+            {dataChoosed?.original_name}
           </h1>
 
           <div className="flex flex-wrap items-center gap-2 text-white font-medium">
-            <span>{moment(dataChoosed?.release_date).format("YYYY")}</span>
+            <span>{moment(dataChoosed?.first_air_date).format("YYYY")}</span>
             <span>•</span>
             <span>{dataChoosed?.adult ? "Adult Content" : "All Ages"}</span>
             <span>•</span>

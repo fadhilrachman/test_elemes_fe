@@ -20,14 +20,12 @@ export default {
   plugins: [
     heroui({
       themes: {
-        light: {
+        dark: {
           colors: {
             primary: {
               DEFAULT: "#E50914",
             },
-            secondary: {
-              DEFAULT: "#3F3F46",
-            },
+
             focus: "#E50914",
           },
         },

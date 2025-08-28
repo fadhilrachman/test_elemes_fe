@@ -4,11 +4,12 @@ import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import MovieCard from "./movie-card";
 import { Button } from "@heroui/button";
+import CardSkeleton from "../shared/card-skeleton";
 
 const ListMovie = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const category = searchParams.get("category");
-  const { data, refetch } = useGetMovies({
+  const { data, refetch, isFetching } = useGetMovies({
     page: 1,
     category: category || "top_rated",
   });
@@ -17,9 +18,8 @@ const ListMovie = () => {
     refetch();
   }, [category]);
   return (
-    <div className=" space-y-6 pr-5 sm:pr-10  text-white bg-gradient-to-t from-[#0F1014] to-black/90 relative">
+    <div className=" space-y-6 pr-5 sm:pr-10  text-white bg-gradient-to-t from-black to-black/90 relative">
       <Tabs
-        color="secondary"
         className=" flex flex-wrap relative"
         selectedKey={category || "top_rated"}
         onSelectionChange={(val) => {
@@ -35,13 +35,14 @@ const ListMovie = () => {
         <Tab key="pupolar" title="Popular  " />
       </Tabs>
       <div className=" grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-        {data?.results?.map((val, key) => {
-          return <MovieCard {...val} key={key} />;
-        })}
+        {isFetching
+          ? Array(6)
+              .fill(0)
+              .map((_, key) => <CardSkeleton key={key} />)
+          : data?.results?.map((val, key) => {
+              return <MovieCard {...val} key={key} />;
+            })}
       </div>
-      <div className="flex justify-center">
-        <Button color="secondary">Load More</Button>
-      </div>{" "}
     </div>
   );
 };

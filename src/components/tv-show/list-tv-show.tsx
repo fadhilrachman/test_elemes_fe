@@ -18,9 +18,8 @@ const ListTvShow = () => {
     refetch();
   }, [category]);
   return (
-    <div className=" space-y-6 pr-5 sm:pr-10  text-white bg-gradient-to-t from-[#0F1014] to-black/90 relative">
+    <div className=" space-y-6 pr-5 sm:pr-10  text-white bg-gradient-to-t from-black to-black/90 relative">
       <Tabs
-        color="secondary"
         className=" flex flex-wrap relative"
         selectedKey={category || "airing_today"}
         onSelectionChange={(val) => {

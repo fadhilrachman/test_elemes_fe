@@ -4,14 +4,16 @@ import IndexPage from "@/pages/index";
 import Movies from "./pages/movies";
 import TvShow from "./pages/tv-show";
 import DefaultLayout from "./layouts/default";
+import Search from "./pages/search";
 
 function App() {
   return (
-    <DefaultLayout className=" pl-5 pb-20 sm:pl-[120px] bg-[#0F1014]  ">
+    <DefaultLayout className=" ">
       <Routes>
         <Route element={<IndexPage />} path="/" />
         <Route element={<Movies />} path="/movies" />
         <Route element={<TvShow />} path="/tv-show" />
+        <Route element={<Search />} path="/search" />
       </Routes>
     </DefaultLayout>
   );

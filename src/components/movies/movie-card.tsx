@@ -1,16 +1,15 @@
 import { MovieType } from "@/types/movie";
 import { Button } from "@heroui/button";
 import moment from "moment";
+import Image from "../shared/Image";
 
 const MovieCard = (props: MovieType) => {
   const ytLink = import.meta.env.VITE_YT_LINK;
   return (
     <div className="relative z-10 max-h-[400px] hover:z-20 rounded-lg overflow-hidden bg-gray-900 group transition-all cursor-pointer hover:scale-120">
-      <img
-        src={
-          "https://image.tmdb.org/t/p/w440_and_h660_face" + props?.backdrop_path
-        }
-        alt="Movie Poster"
+      <Image
+        src={props?.backdrop_path}
+        alt={props.title}
         className="w-full h-full object-cover object-to transition-transform duration-500 "
       />
 
@@ -21,7 +20,6 @@ const MovieCard = (props: MovieType) => {
 
         <Button
           size="sm"
-          color="secondary"
           onPress={() => {
             window.open(`${ytLink}${props.original_title}`, "_blank");
           }}

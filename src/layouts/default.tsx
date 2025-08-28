@@ -10,11 +10,15 @@ export default function DefaultLayout({
 }) {
   return (
     <div
-      className={`relative overflow-x-hidden font-inter flex min-h-screen  text-[#D8D9D9] `}
+      className={` relative dark overflow-x-hidden font-inter flex min-h-screen  text-[#D8D9D9] `}
     >
       <Sidebar />
       <BottomBar />
-      <main className={`w-full ${className}`}>{children}</main>
+      <main
+        className={`w-full pl-5 pb-20 sm:pl-[120px] bg-black  ${className}`}
+      >
+        {children}
+      </main>
     </div>
   );
 }
