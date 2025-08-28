@@ -31,7 +31,7 @@ A modern movie & TV show app built with **React**, **Tailwind CSS**, and **TanSt
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/fadhilrachman/test_elemes_fe_fadhilge
+git clone https://github.com/fadhilrachman/test_elemes_fe_fadhil
 cd test_elemes_fe_fadhil
 ```
 
