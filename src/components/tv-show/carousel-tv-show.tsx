@@ -74,7 +74,7 @@ const CarouselTvShow = () => {
 
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-black/60"></div>
 
-      <div className="relative h-full flex flex-col md:flex-row items-end justify-end md:justify-between gap-4 pr-5 sm:pr-10 pb-8">
+      <div className="relative h-full gap-4 flex flex-col lg:flex-row items-start lg:items-end justify-end lg:justify-between pr-5 sm:pr-10 pb-8">
         <header className="max-w-[600px] space-y-6">
           <h1 className="text-4xl font-bold text-white">
             {dataChoosed?.original_name}
