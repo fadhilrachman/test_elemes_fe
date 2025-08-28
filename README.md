@@ -1,50 +1,99 @@
-# Vite & HeroUI Template
+# Vite React Movie App
 
-This is a template for creating applications using Vite and HeroUI (v2).
+A modern movie & TV show app built with **React**, **Tailwind CSS**, and **TanStack Query**. This project fetches data from **The Movie Database (TMDB)** API and allows users to browse, search, and add items to their watchlist.
 
-[Try it on CodeSandbox](https://githubbox.com/frontio-ai/vite-template)
+## 🚀 Tech Stack
 
-## Technologies Used
+- **React 18**
+- **Vite**
+- **Tailwind CSS**
+- **TanStack Query** (for data fetching & caching)
+- **TypeScript**
+- **TMDB API** for movie and TV show data
+- **HeroUI** for UI components
+- **React Router** for navigation
 
-- [Vite](https://vitejs.dev/guide/)
-- [HeroUI](https://heroui.com)
-- [Tailwind CSS](https://tailwindcss.com)
-- [Tailwind Variants](https://tailwind-variants.org)
-- [TypeScript](https://www.typescriptlang.org)
-- [Framer Motion](https://www.framer.com/motion)
+## ✨ Features
 
-## How to Use
+- **Browse Movies & TV Shows**: Discover trending, popular, and top-rated content
+- **Search Functionality**: Search for specific movies and TV shows
+- **Watchlist Management**: Add/remove items to/from your personal watchlist
+- **Responsive Design**: Optimized for desktop and mobile devices
+- **Modern UI**: Clean and intuitive interface with HeroUI components
 
-To clone the project, run the following command:
+## ⚡ Getting Started
+
+### Prerequisites
+
+- Node.js (v16 or higher)
+- npm, yarn, pnpm, or bun
+
+### 1. Clone the repository
 
 ```bash
-git clone https://github.com/frontio-ai/vite-template.git
+git clone https://github.com/fadhilrachman/test_elemes_fe_fadhilge
+cd test_elemes_fe_fadhil
 ```
 
-### Install dependencies
-
-You can use one of them `npm`, `yarn`, `pnpm`, `bun`, Example using `npm`:
+### 2. Install dependencies
 
 ```bash
+# Using npm
 npm install
+
+# Using yarn
+yarn install
+
+# Using pnpm
+pnpm install
+
+# Using bun
+bun install
 ```
 
-### Run the development server
+### 3. Environment Setup
+
+The project uses TMDB API. The environment variables are already configured in the `.env` file:
+
+```env
+VITE_API_KEY_TMDB="your_tmdb_api_key"
+VITE_API_URL="https://api.themoviedb.org/3/"
+VITE_IMG_LINK="https://image.tmdb.org/t/p/w440_and_h660_face"
+VITE_YT_LINK="https://www.youtube.com/results?search_query="
+```
+
+### 4. Run the development server
 
 ```bash
+# Using npm
 npm run dev
+
+# Using yarn
+yarn dev
+
+# Using pnpm
+pnpm dev
+
+# Using bun
+bun dev
 ```
 
-### Setup pnpm (optional)
+Open [http://localhost:5173](http://localhost:5173) to view the app in your browser.
 
-If you are using `pnpm`, you need to add the following code to your `.npmrc` file:
+## 📁 Project Structure
 
-```bash
-public-hoist-pattern[]=*@heroui/*
 ```
-
-After modifying the `.npmrc` file, you need to run `pnpm install` again to ensure that the dependencies are installed correctly.
-
-## License
-
-Licensed under the [MIT license](https://github.com/frontio-ai/vite-template/blob/main/LICENSE).
+src/
+├── components/
+│   ├── movies/          # Movie-related components
+│   ├── tv-show/         # TV show components
+│   ├── search/          # Search components
+│   ├── watchlist/       # Watchlist components
+│   └── shared/          # Shared/reusable components
+├── hooks/               # Custom React hooks
+├── lib/                 # Utility libraries and providers
+├── pages/               # Page components
+├── types/               # TypeScript type definitions
+├── layouts/             # Layout components
+└── styles/              # Global styles
+```
