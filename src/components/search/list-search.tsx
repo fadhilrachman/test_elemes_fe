@@ -59,6 +59,7 @@ const ListSearch = () => {
                       overview={val?.overview}
                       releaseDate={val?.first_air_date}
                       key={key}
+                      type="movie"
                     />
                   ))}
             </div>
@@ -78,6 +79,7 @@ const ListSearch = () => {
                     .map((_, key) => <CardSkeleton key={key} />)
                 : dataTvShow?.map((val, key) => (
                     <Card
+                      type="tv"
                       adult={val?.adult}
                       title={val?.name}
                       bgImage={val?.backdrop_path}

@@ -2,7 +2,6 @@ import { Button } from "@heroui/button";
 import moment from "moment";
 import Image from "../shared/Image";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { Tooltip } from "@heroui/tooltip";
 
 interface PropsType {
   bgImage: string;
@@ -11,8 +10,10 @@ interface PropsType {
   overview: string;
   originalLanguage: string;
   adult: boolean;
+  type: "movie" | "tv";
 }
 const Card = (props: PropsType) => {
+  // const watchListMovie
   const ytLink = import.meta.env.VITE_YT_LINK;
   return (
     <div className="relative z-10 max-h-[400px] hover:z-20 rounded-lg overflow-hidden bg-gray-900 group transition-all cursor-pointer hover:scale-120">
@@ -39,11 +40,9 @@ const Card = (props: PropsType) => {
             {" "}
             Watch Now
           </Button>
-          <Tooltip content="Add to Watchlist">
-            <Button isIconOnly size="sm">
-              <Icon icon={"mdi:plus"} />
-            </Button>
-          </Tooltip>
+          <Button isIconOnly size="sm" onPress={() => {}}>
+            <Icon icon={"mdi:plus"} />
+          </Button>
         </div>
 
         <p className="text-xs text-gray-300 mt-3">

@@ -41,6 +41,7 @@ const ListMovie = () => {
           : data?.results?.map((val, key) => {
               return (
                 <Card
+                  type="movie"
                   adult={val?.adult}
                   title={val?.title}
                   bgImage={val?.backdrop_path}
