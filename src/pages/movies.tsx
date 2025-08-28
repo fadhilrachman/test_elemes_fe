@@ -1,4 +1,4 @@
-import CarouselMovie from "@/components/movies/carouse-movie";
+import CarouselMovie from "@/components/movies/carousel-movie";
 import ListMovie from "@/components/movies/list-movie";
 
 const Movies = () => {

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const BottomBar = () => {
   return (
-    <div className="fixed sm:hidden  bottom-0 z-50 grid grid-cols-4  bg-black h-[72px] inset-x-0">
+    <section className="fixed sm:hidden  bottom-0 z-50 grid grid-cols-4  bg-black h-[72px] inset-x-0">
       {listSidebar.map((val, key) => {
         return (
           <Link
@@ -17,7 +17,7 @@ const BottomBar = () => {
           </Link>
         );
       })}
-    </div>
+    </section>
   );
 };
 

@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetcher } from "@/lib/fetcher";
 import { BaseResponseType } from "@/types";
-import { MovieType } from "@/types/movie";
+import { MovieType } from "@/types/movies";
 
 export const useGetMovies = (params: { page?: number; category: string }) => {
   const query = useQuery<BaseResponseType<MovieType>>({

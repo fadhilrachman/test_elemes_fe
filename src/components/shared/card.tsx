@@ -51,45 +51,58 @@ const Card = (props: PropsType) => {
   };
 
   return (
-    <div className="relative z-10 max-h-[400px] hover:z-20 rounded-lg overflow-hidden bg-gray-900 group transition-all cursor-pointer hover:scale-120">
-      <Image
-        src={props.bgImage}
-        alt={props.title}
-        className="w-full h-full object-cover object-to transition-transform duration-500"
-      />
+    <article className="relative z-10 max-h-[400px] hover:z-20 rounded-lg overflow-hidden bg-gray-900 group transition-all cursor-pointer hover:scale-120">
+      <figure className="relative w-full h-full">
+        <Image
+          src={props.bgImage}
+          alt={props.title}
+          className="w-full h-full object-cover object-top transition-transform duration-500"
+        />
+        <figcaption className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+          <header>
+            <h3 className="text-sm md:text-xl font-bold text-white">
+              {props.title}
+            </h3>
+          </header>
 
-      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-        <h3 className="text-sm md:text-xl font-bold text-white">
-          {props.title}
-        </h3>
-
-        <div className="flex flex-col md:flex-row gap-2 mt-2">
-          <Button
-            size="sm"
-            onPress={() => window.open(`${ytLink}${props.title}`, "_blank")}
-            className="w-full"
-            variant="solid"
-          >
-            Watch Now
-          </Button>
-
-          {!props.isWatchlistHide && (
-            <Button isIconOnly size="sm" onPress={handleAddToWatchlist}>
-              <Icon icon={isAdded ? "iconamoon:check-fill" : "mdi:plus"} />
+          <div className="flex flex-col md:flex-row gap-2 mt-2">
+            <Button
+              size="sm"
+              onPress={() => window.open(`${ytLink}${props.title}`, "_blank")}
+              className="w-full"
+              variant="solid"
+              aria-label={`Watch ${props.title} now`}
+            >
+              Watch Now
             </Button>
-          )}
-        </div>
 
-        <p className="text-xs text-gray-300 mt-3">
-          {moment(props.releaseDate).format("YYYY")} •{" "}
-          {props.adult ? "Adult Content" : "All Ages"} •{" "}
-          {props.originalLanguage}
-        </p>
-        <p className="text-xs text-gray-400 mt-1 line-clamp-2 md:line-clamp-3">
-          {props.overview}
-        </p>
-      </div>
-    </div>
+            {!props.isWatchlistHide && (
+              <Button
+                isIconOnly
+                size="sm"
+                onPress={handleAddToWatchlist}
+                aria-label={
+                  isAdded
+                    ? `${props.title} is in watchlist`
+                    : `Add ${props.title} to watchlist`
+                }
+              >
+                <Icon icon={isAdded ? "iconamoon:check-fill" : "mdi:plus"} />
+              </Button>
+            )}
+          </div>
+
+          <p className="text-xs text-gray-300 mt-3">
+            {moment(props.releaseDate).format("YYYY")} •{" "}
+            {props.adult ? "Adult Content" : "All Ages"} •{" "}
+            {props.originalLanguage}
+          </p>
+          <p className="text-xs text-gray-400 mt-1 line-clamp-2 md:line-clamp-3">
+            {props.overview}
+          </p>
+        </figcaption>
+      </figure>
+    </article>
   );
 };
 

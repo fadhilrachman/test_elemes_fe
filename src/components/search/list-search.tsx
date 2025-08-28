@@ -8,6 +8,7 @@ import Card from "../shared/card";
 const ListSearch = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const explore = searchParams.get("explore");
+
   const { data, refetch, isFetching, status } = useGetSearchMultiple({
     query: explore,
     page: 1,
@@ -21,17 +22,23 @@ const ListSearch = () => {
   }, [explore]);
 
   return (
-    <main className="py-7 pr-5 sm:pr-10">
-      <InputSearch
-        placeholder="Movies & TV Shows"
-        onChange={(val) => setSearchParams({ explore: val })}
-      />
+    <main className="py-7 pr-5 sm:pr-10" aria-label="Search results">
+      <header className="mb-6">
+        <InputSearch
+          placeholder="Movies & TV Shows"
+          onChange={(val) => setSearchParams({ explore: val })}
+          aria-label="Search movies and TV shows"
+        />
+      </header>
 
       {data?.results?.length === 0 ? (
-        <section className="flex flex-col items-center justify-center w-full py-20 text-center">
-          <h2 className="text-lg md:text-xl font-semibold text-gray-700 mb-2">
+        <section
+          className="flex flex-col items-center justify-center w-full py-20 text-center"
+          aria-label="No search results"
+        >
+          <h1 className="text-lg md:text-xl font-semibold text-gray-700 mb-2">
             No items found
-          </h2>
+          </h1>
           <p className="text-sm md:text-base text-gray-500">
             Try adjusting your filters or search terms.
           </p>
@@ -39,59 +46,79 @@ const ListSearch = () => {
       ) : (
         <div className="space-y-8">
           <section className="space-y-4" aria-labelledby="movies-title">
-            {dataMovies?.length != 0 && (
-              <h2 id="movies-title" className="text-2xl font-bold">
-                Movies
-              </h2>
+            {dataMovies?.length > 0 && (
+              <header>
+                <h2 id="movies-title" className="text-2xl font-bold">
+                  Movies
+                </h2>
+              </header>
             )}
 
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+            <ul
+              className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6"
+              role="list"
+            >
               {isFetching && status === "success"
                 ? Array(6)
                     .fill(0)
-                    .map((_, key) => <CardSkeleton key={key} />)
+                    .map((_, key) => (
+                      <li key={key}>
+                        <CardSkeleton />
+                      </li>
+                    ))
                 : dataMovies?.map((val, key) => (
-                    <Card
-                      id={val.id}
-                      adult={val?.adult}
-                      title={val?.name}
-                      bgImage={val?.backdrop_path}
-                      originalLanguage={val?.original_language}
-                      overview={val?.overview}
-                      releaseDate={val?.first_air_date}
-                      key={key}
-                      type="movie"
-                    />
+                    <li key={key}>
+                      <Card
+                        id={val.id}
+                        adult={val?.adult}
+                        title={val?.name}
+                        bgImage={val?.backdrop_path}
+                        originalLanguage={val?.original_language}
+                        overview={val?.overview}
+                        releaseDate={val?.first_air_date}
+                        type="movie"
+                      />
+                    </li>
                   ))}
-            </div>
+            </ul>
           </section>
 
           <section className="space-y-4" aria-labelledby="tvshows-title">
-            {dataTvShow?.length != 0 && (
-              <h2 id="movies-title" className="text-2xl font-bold">
-                TV Shows
-              </h2>
+            {dataTvShow?.length > 0 && (
+              <header>
+                <h2 id="tvshows-title" className="text-2xl font-bold">
+                  TV Shows
+                </h2>
+              </header>
             )}
 
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+            <ul
+              className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6"
+              role="list"
+            >
               {isFetching && status === "success"
                 ? Array(6)
                     .fill(0)
-                    .map((_, key) => <CardSkeleton key={key} />)
+                    .map((_, key) => (
+                      <li key={key}>
+                        <CardSkeleton />
+                      </li>
+                    ))
                 : dataTvShow?.map((val, key) => (
-                    <Card
-                      id={val.id}
-                      type="tv"
-                      adult={val?.adult}
-                      title={val?.name}
-                      bgImage={val?.backdrop_path}
-                      originalLanguage={val?.original_language}
-                      overview={val?.overview}
-                      releaseDate={val?.first_air_date}
-                      key={key}
-                    />
+                    <li key={key}>
+                      <Card
+                        id={val.id}
+                        type="tv"
+                        adult={val?.adult}
+                        title={val?.name}
+                        bgImage={val?.backdrop_path}
+                        originalLanguage={val?.original_language}
+                        overview={val?.overview}
+                        releaseDate={val?.first_air_date}
+                      />
+                    </li>
                   ))}
-            </div>
+            </ul>
           </section>
         </div>
       )}
