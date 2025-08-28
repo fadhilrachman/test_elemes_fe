@@ -4,16 +4,16 @@ import { Link } from "react-router-dom";
 
 const BottomBar = () => {
   return (
-    <div className="fixed sm:hidden space-y-1 bottom-0 z-50 grid grid-cols-4 text-sm bg-black h-[72px] inset-x-0">
+    <div className="fixed sm:hidden  bottom-0 z-50 grid grid-cols-4  bg-black h-[72px] inset-x-0">
       {listSidebar.map((val, key) => {
         return (
           <Link
             to={val.href}
             key={key}
-            className="flex cursor-pointer flex-col justify-center items-center"
+            className="flex space-y-2 cursor-pointer flex-col justify-center items-center"
           >
-            <Icon icon={val.icon} className="text-sm" />
-            <p>{val.label}</p>
+            <Icon icon={val.icon} className="text-md" />
+            <p className="text-xs">{val.label}</p>
           </Link>
         );
       })}

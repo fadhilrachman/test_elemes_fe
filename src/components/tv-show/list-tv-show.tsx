@@ -36,7 +36,8 @@ const ListTvShow = () => {
         {data?.results?.map((val, key) => {
           return (
             <Card
-              type="movie"
+              id={val.id}
+              type="tv"
               adult={val?.adult}
               title={val?.name}
               bgImage={val?.backdrop_path}

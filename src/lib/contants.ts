@@ -15,8 +15,8 @@ export const listSidebar = [
     icon: "fluent:tv-24-regular",
   },
   {
-    label: "Peoples",
-    href: "/peoples",
-    icon: "icon-park-solid:peoples-two",
+    label: "Watchlist",
+    href: "/watchlist",
+    icon: "lucide:list",
   },
 ];

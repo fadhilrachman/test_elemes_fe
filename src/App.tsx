@@ -5,6 +5,7 @@ import Movies from "./pages/movies";
 import TvShow from "./pages/tv-show";
 import DefaultLayout from "./layouts/default";
 import Search from "./pages/search";
+import Watchlist from "./pages/watchlist";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route element={<Movies />} path="/movies" />
         <Route element={<TvShow />} path="/tv-show" />
         <Route element={<Search />} path="/search" />
+        <Route element={<Watchlist />} path="/watchlist" />
       </Routes>
     </DefaultLayout>
   );

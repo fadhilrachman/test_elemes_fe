@@ -52,6 +52,7 @@ const ListSearch = () => {
                     .map((_, key) => <CardSkeleton key={key} />)
                 : dataMovies?.map((val, key) => (
                     <Card
+                      id={val.id}
                       adult={val?.adult}
                       title={val?.name}
                       bgImage={val?.backdrop_path}
@@ -79,6 +80,7 @@ const ListSearch = () => {
                     .map((_, key) => <CardSkeleton key={key} />)
                 : dataTvShow?.map((val, key) => (
                     <Card
+                      id={val.id}
                       type="tv"
                       adult={val?.adult}
                       title={val?.name}

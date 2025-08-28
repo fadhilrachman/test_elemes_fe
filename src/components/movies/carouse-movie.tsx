@@ -1,14 +1,61 @@
 import { useGetTrandingMovies } from "@/hooks/use-movie";
 import { Button } from "@heroui/button";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CarouselSkeleton from "../shared/carousel-skeleton";
 import moment from "moment";
+import { addToast } from "@heroui/toast";
 
 const CarouselMovie = () => {
   const { data, isFetching } = useGetTrandingMovies({ page: 6 });
   const [index, setIndex] = useState(0);
   const dataChoosed = data?.results?.[index];
+
+  const key = "movie";
+  const [isAdded, setIsAdded] = useState(false);
+
+  useEffect(() => {
+    if (dataChoosed) {
+      const existing = localStorage.getItem(key);
+      const parsed = existing ? JSON.parse(existing) : [];
+      const already = parsed.some((item: any) => item.id === dataChoosed.id);
+      setIsAdded(already);
+    }
+  }, [dataChoosed]);
+
+  const handleAddToWatchlist = () => {
+    if (!dataChoosed) return;
+
+    const existing = localStorage.getItem(key);
+    const parsed = existing ? JSON.parse(existing) : [];
+
+    if (!isAdded) {
+      const updated = [
+        ...parsed,
+        {
+          id: dataChoosed.id,
+          bgImage: dataChoosed.backdrop_path,
+          title: dataChoosed.title,
+          releaseDate: dataChoosed.release_date,
+          overview: dataChoosed.overview,
+          originalLanguage: dataChoosed.original_language,
+          adult: dataChoosed.adult,
+        },
+      ];
+      localStorage.setItem(key, JSON.stringify(updated));
+      setIsAdded(true);
+      addToast({
+        title: `${dataChoosed.original_title} added to your ${key} list!`,
+        color: "success",
+      });
+    } else {
+      addToast({
+        title: `${dataChoosed.original_title} is already in your ${key} list.`,
+        color: "danger",
+      });
+    }
+  };
+
   return (
     <section className="relative w-full h-[560px]">
       <div
@@ -42,8 +89,16 @@ const CarouselMovie = () => {
             <Button color="primary" className="w-full sm:w-auto" size="lg">
               Watch Now
             </Button>
-            <Button variant="solid" size="lg" isIconOnly>
-              <Icon icon="line-md:plus" className="text-lg" />
+            <Button
+              variant="solid"
+              size="lg"
+              isIconOnly
+              onPress={handleAddToWatchlist}
+            >
+              <Icon
+                icon={isAdded ? "iconamoon:check-fill" : "line-md:plus"}
+                className="text-lg"
+              />
             </Button>
           </div>
         </div>
@@ -64,7 +119,7 @@ const CarouselMovie = () => {
                       val?.poster_path
                     }
                     className={`${
-                      index == key && "border border-white"
+                      index === key ? "border border-white" : ""
                     } w-[100px] h-[60px] object-top object-cover rounded-md cursor-pointer transition-all hover:scale-110`}
                   />
                 ))}
