@@ -1,16 +1,18 @@
 import { listSidebar } from "@/lib/contants";
 import { Icon } from "@iconify/react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 const Sidebar = () => {
+  const location = useLocation();
   return (
     <aside className="w-[120px] hidden sm:flex z-20 fixed bg-gradient-to-r from-black/100 to-black/60  h-screen  items-center px-4">
+      {/* {} */}
       <nav className="w-full group/sidebar  z-10 flex justify-center ">
         <ul className="relative z-10">
           {listSidebar.map((val, i) => (
             <li key={i}>
               <Link
                 to={val.href}
-                className="flex group/item relative items-center space-x-3 w-full h-[60px] cursor-pointer text-xl"
+                className={`flex group/item relative items-center space-x-3 w-full h-[60px] cursor-pointer text-xl ${location.pathname == val.href ? "text-white " : "text-neutral-500 "}`}
               >
                 <Icon
                   icon={val.icon}
